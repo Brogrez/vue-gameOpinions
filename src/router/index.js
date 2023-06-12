@@ -9,11 +9,6 @@ const routes = [
     name: "GamesView",
     component: () => import("../views/modules/GamesList.vue"),
   },
-  {
-    path: "/opinion",
-    name: "OpinionView",
-    component: () => import("../views/modules/OpinionList.vue"),
-  },
 ];
 
 const router = new VueRouter({
