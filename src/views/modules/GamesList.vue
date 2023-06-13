@@ -5,6 +5,7 @@
 
       <div class="row">
         <div
+          id="gameList"
           v-for="game in games"
           v-bind:key="game.id"
           class="col-lg-4 col-md-6 my-5"
@@ -28,7 +29,7 @@
             </b-list-group>
 
             <b-card-body class="d-flex justify-content-around">
-              <b-button variant="warning">Opinar</b-button>
+              <b-button @click="redirectTo(game.slug)" variant="warning">Ver mas</b-button>
               <b-icon icon="heart" scale="2" class="align-self-center"></b-icon>
             </b-card-body>
           </b-card>
@@ -37,6 +38,16 @@
     </div>
 
     <!-- PAGINACION -->
+    <div class=" d-flex justify-content-center" >
+      <b-pagination
+        v-model="currentPage"
+        :total-rows="total"
+        :per-page="perPage"
+        aria-controls="gameList"
+        size="lg"
+        
+      ></b-pagination>
+    </div>
   </div>
 </template>
 
@@ -48,15 +59,35 @@ export default {
   data() {
     return {
       games: null,
+      total: null,
+      perPage: 9,
+      currentPage: 1,
     };
   },
-  mounted() {
-    axios
-      .get(
-        "https://api.rawg.io/api/games?key=f65f5f4c16ff47b29e1e8a1998fe70dc&page=1&page_size=9"
-      )
-      .then((response) => (this.games = response.data.results));
+  methods: {
+    cargarApi() {
+      axios
+        .get(
+          `https://api.rawg.io/api/games?key=f65f5f4c16ff47b29e1e8a1998fe70dc&page=${this.currentPage}&page_size=${this.perPage}`
+        )
+        .then((response) => {
+          this.games = response.data.results
+          this.total = response.data.count
+        });
+    },
+    redirectTo(index){
+      this.$router.push("/game/"+index)
+    }
   },
+  mounted(){
+    this.cargarApi();
+  },
+  watch: {
+    currentPage(){
+      this.cargarApi();
+    }
+  },
+ 
 };
 </script>
 

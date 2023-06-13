@@ -9,6 +9,12 @@ const routes = [
     name: "GamesView",
     component: () => import("../views/modules/GamesList.vue"),
   },
+  {
+    path: "/game/:id",
+    name: "game",
+    component: () => import("../views/modules/Game.vue"),
+    props: true,
+  }
 ];
 
 const router = new VueRouter({
