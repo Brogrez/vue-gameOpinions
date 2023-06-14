@@ -30,14 +30,16 @@
           <div class="info">
             <div class="rating">
               <p class="rating_titulo">Rating:</p>
+              <div class="circle">
               <p class="rating_number">{{ game.rating }}</p>
+              </div> 
             </div>
             <p><span class="infoSpan">Released:</span>{{ game.released }}</p>
             <p><span class="infoSpan">Website:</span>{{ game.website }}</p>
           </div>
 
           <div>
-            <p>Descripcion:</p>
+            <p class="descripcion_titulo">Descripcion:</p>
             <p>{{ game.description_raw }}</p>
           </div>
         </section>
@@ -154,6 +156,15 @@ export default {
   justify-content: space-between;
   gap: 1rem;
 }
+
+.circle{
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-color: #30b0e5; /* Puedes cambiar el color de fondo según tus necesidades */
+  margin: 0 auto;
+  
+}
 .rating {
   display: flex;
   flex-direction: column;
@@ -166,14 +177,16 @@ export default {
   font-weight: bold;
 }
 .rating_number {
-  background-color: #30b0e5;
   font-size: 2rem;
   line-height: 2em;
   font-weight: bold;
   text-align: center;
-  border-radius: 50%;
+  border-radius: 100%;
   width: 2em;
-  margin: 0 auto;
+  margin: 1rem auto;
+}
+.descripcion_titulo{
+  font-weight: bold;
 }
 .info {
   display: flex;
