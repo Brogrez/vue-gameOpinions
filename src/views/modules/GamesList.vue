@@ -30,7 +30,6 @@
 
             <b-card-body class="d-flex justify-content-around">
               <b-button @click="redirectTo(game.slug)" variant="warning">Ver mas</b-button>
-              <b-icon icon="heart" scale="2" class="align-self-center"></b-icon>
             </b-card-body>
           </b-card>
         </div>
